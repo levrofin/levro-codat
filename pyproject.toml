@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "codat-api-client"
+name = "levro-codat"
 version = "v1"
 description = "A client library for accessing Codat API"
 
