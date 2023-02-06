@@ -1,5 +1,11 @@
-# codat-api-client
+# levro-codat
 A client library for accessing Codat API
+
+## Updating the generated client
+From one directory outside the repo, run:
+```
+openapi-python-client update --url https://api.codat.io/swagger/v1/swagger.json --config levro-codat/config.yaml
+```
 
 ## Usage
 First, create a client:
