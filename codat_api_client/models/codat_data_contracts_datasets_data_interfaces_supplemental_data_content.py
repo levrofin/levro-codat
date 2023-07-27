@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-import attr
+from attrs import define, field
 
 if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data_content_additional_property import (
@@ -11,13 +11,13 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsDataInterfacesSupplementalDataContent")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsDataInterfacesSupplementalDataContent:
     """ """
 
     additional_properties: Dict[
         str, "CodatDataContractsDatasetsDataInterfacesSupplementalDataContentAdditionalProperty"
-    ] = attr.ib(init=False, factory=dict)
+    ] = field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         pass

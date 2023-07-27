@@ -1,13 +1,13 @@
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CodatStandardReportingContractsIDimensionItem")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatStandardReportingContractsIDimensionItem:
     """
     Attributes:

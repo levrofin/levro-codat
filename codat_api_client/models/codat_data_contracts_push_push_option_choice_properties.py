@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-import attr
+from attrs import define, field
 
 if TYPE_CHECKING:
     from ..models.codat_data_contracts_push_push_option import CodatDataContractsPushPushOption
@@ -9,11 +9,11 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsPushPushOptionChoiceProperties")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsPushPushOptionChoiceProperties:
     """ """
 
-    additional_properties: Dict[str, "CodatDataContractsPushPushOption"] = attr.ib(init=False, factory=dict)
+    additional_properties: Dict[str, "CodatDataContractsPushPushOption"] = field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         pass

@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
@@ -11,6 +11,9 @@ if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_company_dataset_source_urls import (
         CodatDataContractsDatasetsCompanyDatasetSourceUrls,
     )
+    from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+        CodatDataContractsDatasetsDataInterfacesSupplementalData,
+    )
     from ..models.codat_data_contracts_datasets_phone import CodatDataContractsDatasetsPhone
     from ..models.codat_data_contracts_datasets_web_link import CodatDataContractsDatasetsWebLink
 
@@ -18,7 +21,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsCompanyDataset")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsCompanyDataset:
     """
     Attributes:
@@ -36,6 +39,7 @@ class CodatDataContractsDatasetsCompanyDataset:
         source_urls (Union[Unset, None, CodatDataContractsDatasetsCompanyDatasetSourceUrls]):
         created_date (Union[Unset, None, datetime.datetime]):
         contract_version (Union[Unset, None, str]):
+        supplemental_data (Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]):
     """
 
     company_name: Union[Unset, None, str] = UNSET
@@ -52,6 +56,7 @@ class CodatDataContractsDatasetsCompanyDataset:
     source_urls: Union[Unset, None, "CodatDataContractsDatasetsCompanyDatasetSourceUrls"] = UNSET
     created_date: Union[Unset, None, datetime.datetime] = UNSET
     contract_version: Union[Unset, None, str] = UNSET
+    supplemental_data: Union[Unset, "CodatDataContractsDatasetsDataInterfacesSupplementalData"] = UNSET
 
     def to_dict(self) -> Dict[str, Any]:
         company_name = self.company_name
@@ -112,6 +117,9 @@ class CodatDataContractsDatasetsCompanyDataset:
             created_date = self.created_date.isoformat() if self.created_date else None
 
         contract_version = self.contract_version
+        supplemental_data: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.supplemental_data, Unset):
+            supplemental_data = self.supplemental_data.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update({})
@@ -143,6 +151,8 @@ class CodatDataContractsDatasetsCompanyDataset:
             field_dict["createdDate"] = created_date
         if contract_version is not UNSET:
             field_dict["contractVersion"] = contract_version
+        if supplemental_data is not UNSET:
+            field_dict["supplementalData"] = supplemental_data
 
         return field_dict
 
@@ -151,6 +161,9 @@ class CodatDataContractsDatasetsCompanyDataset:
         from ..models.codat_data_contracts_datasets_address import CodatDataContractsDatasetsAddress
         from ..models.codat_data_contracts_datasets_company_dataset_source_urls import (
             CodatDataContractsDatasetsCompanyDatasetSourceUrls,
+        )
+        from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+            CodatDataContractsDatasetsDataInterfacesSupplementalData,
         )
         from ..models.codat_data_contracts_datasets_phone import CodatDataContractsDatasetsPhone
         from ..models.codat_data_contracts_datasets_web_link import CodatDataContractsDatasetsWebLink
@@ -227,6 +240,13 @@ class CodatDataContractsDatasetsCompanyDataset:
 
         contract_version = d.pop("contractVersion", UNSET)
 
+        _supplemental_data = d.pop("supplementalData", UNSET)
+        supplemental_data: Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]
+        if isinstance(_supplemental_data, Unset):
+            supplemental_data = UNSET
+        else:
+            supplemental_data = CodatDataContractsDatasetsDataInterfacesSupplementalData.from_dict(_supplemental_data)
+
         codat_data_contracts_datasets_company_dataset = cls(
             company_name=company_name,
             accounting_platform_ref=accounting_platform_ref,
@@ -242,6 +262,7 @@ class CodatDataContractsDatasetsCompanyDataset:
             source_urls=source_urls,
             created_date=created_date,
             contract_version=contract_version,
+            supplemental_data=supplemental_data,
         )
 
         return codat_data_contracts_datasets_company_dataset

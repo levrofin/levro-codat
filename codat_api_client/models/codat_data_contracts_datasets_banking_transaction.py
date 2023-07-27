@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_banking_banking_transaction_code import (
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsBankingTransaction")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsBankingTransaction:
     """
     Attributes:

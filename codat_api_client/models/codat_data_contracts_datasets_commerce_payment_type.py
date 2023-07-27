@@ -2,18 +2,18 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsCommercePaymentType(str, Enum):
-    UNKNOWN = "Unknown"
-    CASH = "Cash"
     CARD = "Card"
-    INVOICE = "Invoice"
-    ONLINECARD = "OnlineCard"
-    SWISH = "Swish"
-    VIPPS = "Vipps"
-    MOBILE = "Mobile"
-    STORECREDIT = "StoreCredit"
-    PAYPAL = "Paypal"
+    CASH = "Cash"
     CUSTOM = "Custom"
+    INVOICE = "Invoice"
+    MOBILE = "Mobile"
+    ONLINECARD = "OnlineCard"
+    PAYPAL = "Paypal"
     PREPAID = "Prepaid"
+    STORECREDIT = "StoreCredit"
+    SWISH = "Swish"
+    UNKNOWN = "Unknown"
+    VIPPS = "Vipps"
 
     def __str__(self) -> str:
         return str(self.value)

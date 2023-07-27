@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_banking_transaction_category_status import (
@@ -12,7 +12,7 @@ from ..types import UNSET, Unset
 T = TypeVar("T", bound="CodatDataContractsDatasetsBankingTransactionCategory")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsBankingTransactionCategory:
     """
     Attributes:

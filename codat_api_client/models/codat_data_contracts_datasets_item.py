@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_item_status import CodatDataContractsDatasetsItemStatus
@@ -10,6 +10,9 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_bill_item import CodatDataContractsDatasetsBillItem
+    from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+        CodatDataContractsDatasetsDataInterfacesSupplementalData,
+    )
     from ..models.codat_data_contracts_datasets_invoice_item import CodatDataContractsDatasetsInvoiceItem
     from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
 
@@ -17,7 +20,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsItem")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsItem:
     """
     Attributes:
@@ -33,6 +36,7 @@ class CodatDataContractsDatasetsItem:
         bill_item (Union[Unset, CodatDataContractsDatasetsBillItem]):
         invoice_item (Union[Unset, CodatDataContractsDatasetsInvoiceItem]):
         metadata (Union[Unset, CodatDataContractsDatasetsMetadata]):
+        supplemental_data (Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]):
     """
 
     item_status: CodatDataContractsDatasetsItemStatus
@@ -47,6 +51,7 @@ class CodatDataContractsDatasetsItem:
     bill_item: Union[Unset, "CodatDataContractsDatasetsBillItem"] = UNSET
     invoice_item: Union[Unset, "CodatDataContractsDatasetsInvoiceItem"] = UNSET
     metadata: Union[Unset, "CodatDataContractsDatasetsMetadata"] = UNSET
+    supplemental_data: Union[Unset, "CodatDataContractsDatasetsDataInterfacesSupplementalData"] = UNSET
 
     def to_dict(self) -> Dict[str, Any]:
         item_status = self.item_status.value
@@ -78,6 +83,10 @@ class CodatDataContractsDatasetsItem:
         if not isinstance(self.metadata, Unset):
             metadata = self.metadata.to_dict()
 
+        supplemental_data: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.supplemental_data, Unset):
+            supplemental_data = self.supplemental_data.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(
             {
@@ -103,12 +112,17 @@ class CodatDataContractsDatasetsItem:
             field_dict["invoiceItem"] = invoice_item
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
+        if supplemental_data is not UNSET:
+            field_dict["supplementalData"] = supplemental_data
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.codat_data_contracts_datasets_bill_item import CodatDataContractsDatasetsBillItem
+        from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+            CodatDataContractsDatasetsDataInterfacesSupplementalData,
+        )
         from ..models.codat_data_contracts_datasets_invoice_item import CodatDataContractsDatasetsInvoiceItem
         from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
 
@@ -166,6 +180,13 @@ class CodatDataContractsDatasetsItem:
         else:
             metadata = CodatDataContractsDatasetsMetadata.from_dict(_metadata)
 
+        _supplemental_data = d.pop("supplementalData", UNSET)
+        supplemental_data: Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]
+        if isinstance(_supplemental_data, Unset):
+            supplemental_data = UNSET
+        else:
+            supplemental_data = CodatDataContractsDatasetsDataInterfacesSupplementalData.from_dict(_supplemental_data)
+
         codat_data_contracts_datasets_item = cls(
             item_status=item_status,
             type=type,
@@ -179,6 +200,7 @@ class CodatDataContractsDatasetsItem:
             bill_item=bill_item,
             invoice_item=invoice_item,
             metadata=metadata,
+            supplemental_data=supplemental_data,
         )
 
         return codat_data_contracts_datasets_item

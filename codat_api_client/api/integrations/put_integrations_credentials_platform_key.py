@@ -1,56 +1,51 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.codat_public_api_models_platform_credentials_platform_credentials import (
-    CodatPublicApiModelsPlatformCredentialsPlatformCredentials,
-)
 from ...models.put_integrations_credentials_platform_key_json_body import PutIntegrationsCredentialsPlatformKeyJsonBody
+from ...models.put_integrations_credentials_platform_key_response_200 import (
+    PutIntegrationsCredentialsPlatformKeyResponse200,
+)
 from ...types import Response
 
 
 def _get_kwargs(
     platform_key: str,
     *,
-    client: AuthenticatedClient,
     json_body: PutIntegrationsCredentialsPlatformKeyJsonBody,
 ) -> Dict[str, Any]:
-    url = "{}/integrations/credentials/{platformKey}".format(client.base_url, platformKey=platform_key)
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     json_json_body = json_body.to_dict()
 
     return {
         "method": "put",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/integrations/credentials/{platformKey}".format(
+            platformKey=platform_key,
+        ),
         "json": json_json_body,
     }
 
 
 def _parse_response(
-    *, client: Client, response: httpx.Response
-) -> Optional[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Optional[PutIntegrationsCredentialsPlatformKeyResponse200]:
     if response.status_code == HTTPStatus.OK:
-        response_200 = CodatPublicApiModelsPlatformCredentialsPlatformCredentials.from_dict(response.json())
+        response_200 = PutIntegrationsCredentialsPlatformKeyResponse200.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
 def _build_response(
-    *, client: Client, response: httpx.Response
-) -> Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Response[PutIntegrationsCredentialsPlatformKeyResponse200]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -64,7 +59,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: PutIntegrationsCredentialsPlatformKeyJsonBody,
-) -> Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Response[PutIntegrationsCredentialsPlatformKeyResponse200]:
     """Update credentials required to authenticate with an accounting platform
 
     Args:
@@ -76,17 +71,15 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        Response[PutIntegrationsCredentialsPlatformKeyResponse200]
     """
 
     kwargs = _get_kwargs(
         platform_key=platform_key,
-        client=client,
         json_body=json_body,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -98,7 +91,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: PutIntegrationsCredentialsPlatformKeyJsonBody,
-) -> Optional[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Optional[PutIntegrationsCredentialsPlatformKeyResponse200]:
     """Update credentials required to authenticate with an accounting platform
 
     Args:
@@ -110,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        PutIntegrationsCredentialsPlatformKeyResponse200
     """
 
     return sync_detailed(
@@ -125,7 +118,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: PutIntegrationsCredentialsPlatformKeyJsonBody,
-) -> Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Response[PutIntegrationsCredentialsPlatformKeyResponse200]:
     """Update credentials required to authenticate with an accounting platform
 
     Args:
@@ -137,17 +130,15 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        Response[PutIntegrationsCredentialsPlatformKeyResponse200]
     """
 
     kwargs = _get_kwargs(
         platform_key=platform_key,
-        client=client,
         json_body=json_body,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -157,7 +148,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: PutIntegrationsCredentialsPlatformKeyJsonBody,
-) -> Optional[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Optional[PutIntegrationsCredentialsPlatformKeyResponse200]:
     """Update credentials required to authenticate with an accounting platform
 
     Args:
@@ -169,7 +160,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        PutIntegrationsCredentialsPlatformKeyResponse200
     """
 
     return (

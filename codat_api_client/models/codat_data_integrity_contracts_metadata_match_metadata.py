@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..types import UNSET, Unset
 
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataIntegrityContractsMetadataMatchMetadata")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataIntegrityContractsMetadataMatchMetadata:
     """
     Attributes:

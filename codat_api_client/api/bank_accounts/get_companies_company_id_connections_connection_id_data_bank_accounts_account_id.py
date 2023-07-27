@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import httpx
 
@@ -13,37 +13,35 @@ def _get_kwargs(
     company_id: str,
     connection_id: str,
     account_id: str,
-    *,
-    client: AuthenticatedClient,
 ) -> Dict[str, Any]:
-    url = "{}/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}".format(
-        client.base_url, companyId=company_id, connectionId=connection_id, accountId=account_id
-    )
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     return {
         "method": "get",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/companies/{companyId}/connections/{connectionId}/data/bankAccounts/{accountId}".format(
+            companyId=company_id,
+            connectionId=connection_id,
+            accountId=account_id,
+        ),
     }
 
 
-def _parse_response(*, client: Client, response: httpx.Response) -> Optional[CodatDataContractsDatasetsBankAccount]:
+def _parse_response(
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Optional[CodatDataContractsDatasetsBankAccount]:
     if response.status_code == HTTPStatus.OK:
         response_200 = CodatDataContractsDatasetsBankAccount.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: Client, response: httpx.Response) -> Response[CodatDataContractsDatasetsBankAccount]:
+def _build_response(
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Response[CodatDataContractsDatasetsBankAccount]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -78,11 +76,9 @@ def sync_detailed(
         company_id=company_id,
         connection_id=connection_id,
         account_id=account_id,
-        client=client,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -108,7 +104,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatDataContractsDatasetsBankAccount]
+        CodatDataContractsDatasetsBankAccount
     """
 
     return sync_detailed(
@@ -145,11 +141,9 @@ async def asyncio_detailed(
         company_id=company_id,
         connection_id=connection_id,
         account_id=account_id,
-        client=client,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -173,7 +167,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatDataContractsDatasetsBankAccount]
+        CodatDataContractsDatasetsBankAccount
     """
 
     return (

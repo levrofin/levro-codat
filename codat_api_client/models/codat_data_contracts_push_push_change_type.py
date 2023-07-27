@@ -2,11 +2,11 @@ from enum import Enum
 
 
 class CodatDataContractsPushPushChangeType(str, Enum):
-    UNKNOWN = "Unknown"
-    CREATED = "Created"
-    MODIFIED = "Modified"
-    DELETED = "Deleted"
     ATTACHMENTUPLOADED = "AttachmentUploaded"
+    CREATED = "Created"
+    DELETED = "Deleted"
+    MODIFIED = "Modified"
+    UNKNOWN = "Unknown"
 
     def __str__(self) -> str:
         return str(self.value)

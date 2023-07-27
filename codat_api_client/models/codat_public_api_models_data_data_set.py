@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_public_api_models_data_dataset_status import CodatPublicApiModelsDataDatasetStatus
@@ -10,7 +10,7 @@ from ..types import UNSET, Unset
 T = TypeVar("T", bound="CodatPublicApiModelsDataDataSet")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatPublicApiModelsDataDataSet:
     """
     Attributes:

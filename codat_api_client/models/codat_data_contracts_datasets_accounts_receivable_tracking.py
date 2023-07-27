@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_data_contracts_datasets_accounts_receivable_is_billed_to_type import (
     CodatDataContractsDatasetsAccountsReceivableIsBilledToType,
@@ -10,6 +10,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_customer_ref import CodatDataContractsDatasetsCustomerRef
     from ..models.codat_data_contracts_datasets_project_ref import CodatDataContractsDatasetsProjectRef
+    from ..models.codat_data_contracts_datasets_record_ref import CodatDataContractsDatasetsRecordRef
     from ..models.codat_data_contracts_datasets_tracking_category_ref import (
         CodatDataContractsDatasetsTrackingCategoryRef,
     )
@@ -18,13 +19,14 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsAccountsReceivableTracking")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsAccountsReceivableTracking:
     """
     Attributes:
         category_refs (List['CodatDataContractsDatasetsTrackingCategoryRef']):
         is_billed_to (CodatDataContractsDatasetsAccountsReceivableIsBilledToType):
         is_rebilled_to (CodatDataContractsDatasetsAccountsReceivableIsBilledToType):
+        record_refs (Union[Unset, None, List['CodatDataContractsDatasetsRecordRef']]):
         project_ref (Union[Unset, CodatDataContractsDatasetsProjectRef]):
         customer_ref (Union[Unset, CodatDataContractsDatasetsCustomerRef]):
     """
@@ -32,6 +34,7 @@ class CodatDataContractsDatasetsAccountsReceivableTracking:
     category_refs: List["CodatDataContractsDatasetsTrackingCategoryRef"]
     is_billed_to: CodatDataContractsDatasetsAccountsReceivableIsBilledToType
     is_rebilled_to: CodatDataContractsDatasetsAccountsReceivableIsBilledToType
+    record_refs: Union[Unset, None, List["CodatDataContractsDatasetsRecordRef"]] = UNSET
     project_ref: Union[Unset, "CodatDataContractsDatasetsProjectRef"] = UNSET
     customer_ref: Union[Unset, "CodatDataContractsDatasetsCustomerRef"] = UNSET
 
@@ -45,6 +48,17 @@ class CodatDataContractsDatasetsAccountsReceivableTracking:
         is_billed_to = self.is_billed_to.value
 
         is_rebilled_to = self.is_rebilled_to.value
+
+        record_refs: Union[Unset, None, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.record_refs, Unset):
+            if self.record_refs is None:
+                record_refs = None
+            else:
+                record_refs = []
+                for record_refs_item_data in self.record_refs:
+                    record_refs_item = record_refs_item_data.to_dict()
+
+                    record_refs.append(record_refs_item)
 
         project_ref: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.project_ref, Unset):
@@ -62,6 +76,8 @@ class CodatDataContractsDatasetsAccountsReceivableTracking:
                 "isRebilledTo": is_rebilled_to,
             }
         )
+        if record_refs is not UNSET:
+            field_dict["recordRefs"] = record_refs
         if project_ref is not UNSET:
             field_dict["projectRef"] = project_ref
         if customer_ref is not UNSET:
@@ -73,6 +89,7 @@ class CodatDataContractsDatasetsAccountsReceivableTracking:
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.codat_data_contracts_datasets_customer_ref import CodatDataContractsDatasetsCustomerRef
         from ..models.codat_data_contracts_datasets_project_ref import CodatDataContractsDatasetsProjectRef
+        from ..models.codat_data_contracts_datasets_record_ref import CodatDataContractsDatasetsRecordRef
         from ..models.codat_data_contracts_datasets_tracking_category_ref import (
             CodatDataContractsDatasetsTrackingCategoryRef,
         )
@@ -88,6 +105,13 @@ class CodatDataContractsDatasetsAccountsReceivableTracking:
         is_billed_to = CodatDataContractsDatasetsAccountsReceivableIsBilledToType(d.pop("isBilledTo"))
 
         is_rebilled_to = CodatDataContractsDatasetsAccountsReceivableIsBilledToType(d.pop("isRebilledTo"))
+
+        record_refs = []
+        _record_refs = d.pop("recordRefs", UNSET)
+        for record_refs_item_data in _record_refs or []:
+            record_refs_item = CodatDataContractsDatasetsRecordRef.from_dict(record_refs_item_data)
+
+            record_refs.append(record_refs_item)
 
         _project_ref = d.pop("projectRef", UNSET)
         project_ref: Union[Unset, CodatDataContractsDatasetsProjectRef]
@@ -107,6 +131,7 @@ class CodatDataContractsDatasetsAccountsReceivableTracking:
             category_refs=category_refs,
             is_billed_to=is_billed_to,
             is_rebilled_to=is_rebilled_to,
+            record_refs=record_refs,
             project_ref=project_ref,
             customer_ref=customer_ref,
         )

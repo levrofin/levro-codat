@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import httpx
 
@@ -16,40 +16,38 @@ def _get_kwargs(
     company_id: str,
     connection_id: str,
     *,
-    client: AuthenticatedClient,
     json_body: PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody,
 ) -> Dict[str, Any]:
-    url = "{}/companies/{companyId}/connections/{connectionId}".format(
-        client.base_url, companyId=company_id, connectionId=connection_id
-    )
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     json_json_body = json_body.to_dict()
 
     return {
         "method": "patch",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/companies/{companyId}/connections/{connectionId}".format(
+            companyId=company_id,
+            connectionId=connection_id,
+        ),
         "json": json_json_body,
     }
 
 
-def _parse_response(*, client: Client, response: httpx.Response) -> Optional[CodatPublicApiModelsCompanyDataConnection]:
+def _parse_response(
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Optional[CodatPublicApiModelsCompanyDataConnection]:
     if response.status_code == HTTPStatus.OK:
         response_200 = CodatPublicApiModelsCompanyDataConnection.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(*, client: Client, response: httpx.Response) -> Response[CodatPublicApiModelsCompanyDataConnection]:
+def _build_response(
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Response[CodatPublicApiModelsCompanyDataConnection]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,7 +63,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     json_body: PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody,
 ) -> Response[CodatPublicApiModelsCompanyDataConnection]:
-    """Disconnect a data source from a company
+    r"""Disconnect a data source from a company
 
      This revokes a company’s access to a data source, but the data connection is still listed as a part
     of a company's
@@ -89,12 +87,10 @@ def sync_detailed(
     kwargs = _get_kwargs(
         company_id=company_id,
         connection_id=connection_id,
-        client=client,
         json_body=json_body,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -108,7 +104,7 @@ def sync(
     client: AuthenticatedClient,
     json_body: PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody,
 ) -> Optional[CodatPublicApiModelsCompanyDataConnection]:
-    """Disconnect a data source from a company
+    r"""Disconnect a data source from a company
 
      This revokes a company’s access to a data source, but the data connection is still listed as a part
     of a company's
@@ -126,7 +122,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsCompanyDataConnection]
+        CodatPublicApiModelsCompanyDataConnection
     """
 
     return sync_detailed(
@@ -144,7 +140,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     json_body: PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody,
 ) -> Response[CodatPublicApiModelsCompanyDataConnection]:
-    """Disconnect a data source from a company
+    r"""Disconnect a data source from a company
 
      This revokes a company’s access to a data source, but the data connection is still listed as a part
     of a company's
@@ -168,12 +164,10 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         company_id=company_id,
         connection_id=connection_id,
-        client=client,
         json_body=json_body,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -185,7 +179,7 @@ async def asyncio(
     client: AuthenticatedClient,
     json_body: PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody,
 ) -> Optional[CodatPublicApiModelsCompanyDataConnection]:
-    """Disconnect a data source from a company
+    r"""Disconnect a data source from a company
 
      This revokes a company’s access to a data source, but the data connection is still listed as a part
     of a company's
@@ -203,7 +197,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsCompanyDataConnection]
+        CodatPublicApiModelsCompanyDataConnection
     """
 
     return (

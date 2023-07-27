@@ -1,6 +1,6 @@
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_data_contracts_datasets_commerce_address_type import CodatDataContractsDatasetsCommerceAddressType
 from ..types import UNSET, Unset
@@ -8,7 +8,7 @@ from ..types import UNSET, Unset
 T = TypeVar("T", bound="CodatDataContractsDatasetsCommerceAddress")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsCommerceAddress:
     """
     Attributes:

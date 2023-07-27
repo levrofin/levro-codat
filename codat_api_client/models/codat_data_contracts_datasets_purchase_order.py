@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_purchase_order_status import CodatDataContractsDatasetsPurchaseOrderStatus
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsPurchaseOrder")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsPurchaseOrder:
     """
     Attributes:

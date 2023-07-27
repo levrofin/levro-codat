@@ -15,15 +15,11 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     company_id: str,
     *,
-    client: AuthenticatedClient,
     period_length: int,
     periods_to_compare: int,
     start_month: Union[Unset, None, datetime.datetime] = UNSET,
 ) -> Dict[str, Any]:
-    url = "{}/companies/{companyId}/data/financials/profitAndLoss".format(client.base_url, companyId=company_id)
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     params: Dict[str, Any] = {}
     params["periodLength"] = period_length
@@ -40,29 +36,28 @@ def _get_kwargs(
 
     return {
         "method": "get",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/companies/{companyId}/data/financials/profitAndLoss".format(
+            companyId=company_id,
+        ),
         "params": params,
     }
 
 
 def _parse_response(
-    *, client: Client, response: httpx.Response
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
 ) -> Optional[CodatPublicApiModelsDataProfitAndLossResponse]:
     if response.status_code == HTTPStatus.OK:
         response_200 = CodatPublicApiModelsDataProfitAndLossResponse.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
 def _build_response(
-    *, client: Client, response: httpx.Response
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
 ) -> Response[CodatPublicApiModelsDataProfitAndLossResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -98,14 +93,12 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         company_id=company_id,
-        client=client,
         period_length=period_length,
         periods_to_compare=periods_to_compare,
         start_month=start_month,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -133,7 +126,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsDataProfitAndLossResponse]
+        CodatPublicApiModelsDataProfitAndLossResponse
     """
 
     return sync_detailed(
@@ -171,14 +164,12 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         company_id=company_id,
-        client=client,
         period_length=period_length,
         periods_to_compare=periods_to_compare,
         start_month=start_month,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -204,7 +195,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsDataProfitAndLossResponse]
+        CodatPublicApiModelsDataProfitAndLossResponse
     """
 
     return (

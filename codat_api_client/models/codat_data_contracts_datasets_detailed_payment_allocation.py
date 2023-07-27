@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, Type, TypeVar
 
-import attr
+from attrs import define
 
 if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_allocation import CodatDataContractsDatasetsAllocation
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsDetailedPaymentAllocation")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsDetailedPaymentAllocation:
     """
     Attributes:

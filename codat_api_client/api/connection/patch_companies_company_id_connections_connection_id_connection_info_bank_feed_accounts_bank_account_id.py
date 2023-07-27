@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import httpx
 
@@ -8,6 +8,7 @@ from ...client import AuthenticatedClient, Client
 from ...models.codat_standardization_bank_feeds_accounts_contract_bank_feed_bank_account import (
     CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
 )
+from ...models.system_io_stream import SystemIOStream
 from ...types import Response
 
 
@@ -16,44 +17,39 @@ def _get_kwargs(
     connection_id: str,
     bank_account_id: str,
     *,
-    client: AuthenticatedClient,
     json_body: CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
 ) -> Dict[str, Any]:
-    url = "{}/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{bankAccountId}".format(
-        client.base_url, companyId=company_id, connectionId=connection_id, bankAccountId=bank_account_id
-    )
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     json_json_body = json_body.to_dict()
 
     return {
         "method": "patch",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/companies/{companyId}/connections/{connectionId}/connectionInfo/bankFeedAccounts/{bankAccountId}".format(
+            companyId=company_id,
+            connectionId=connection_id,
+            bankAccountId=bank_account_id,
+        ),
         "json": json_json_body,
     }
 
 
 def _parse_response(
-    *, client: Client, response: httpx.Response
-) -> Optional[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]:
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Optional[SystemIOStream]:
     if response.status_code == HTTPStatus.OK:
-        response_200 = CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount.from_dict(response.json())
+        response_200 = SystemIOStream.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
 def _build_response(
-    *, client: Client, response: httpx.Response
-) -> Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]:
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Response[SystemIOStream]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -69,7 +65,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
-) -> Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]:
+) -> Response[SystemIOStream]:
     """Update a single BankFeed BankAccount for a single data source connected to a single company.
 
     Args:
@@ -83,19 +79,17 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]
+        Response[SystemIOStream]
     """
 
     kwargs = _get_kwargs(
         company_id=company_id,
         connection_id=connection_id,
         bank_account_id=bank_account_id,
-        client=client,
         json_body=json_body,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -109,7 +103,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
-) -> Optional[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]:
+) -> Optional[SystemIOStream]:
     """Update a single BankFeed BankAccount for a single data source connected to a single company.
 
     Args:
@@ -123,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]
+        SystemIOStream
     """
 
     return sync_detailed(
@@ -142,7 +136,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
-) -> Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]:
+) -> Response[SystemIOStream]:
     """Update a single BankFeed BankAccount for a single data source connected to a single company.
 
     Args:
@@ -156,19 +150,17 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]
+        Response[SystemIOStream]
     """
 
     kwargs = _get_kwargs(
         company_id=company_id,
         connection_id=connection_id,
         bank_account_id=bank_account_id,
-        client=client,
         json_body=json_body,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -180,7 +172,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
-) -> Optional[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]:
+) -> Optional[SystemIOStream]:
     """Update a single BankFeed BankAccount for a single data source connected to a single company.
 
     Args:
@@ -194,7 +186,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount]
+        SystemIOStream
     """
 
     return (

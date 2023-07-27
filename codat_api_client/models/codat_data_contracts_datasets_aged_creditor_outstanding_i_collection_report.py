@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 if TYPE_CHECKING:
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsAgedCreditorOutstandingICollectionReport")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsAgedCreditorOutstandingICollectionReport:
     """
     Attributes:

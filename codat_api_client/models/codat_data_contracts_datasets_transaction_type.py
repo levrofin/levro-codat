@@ -2,24 +2,24 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsTransactionType(str, Enum):
-    UNKNOWN = "Unknown"
+    ATM = "Atm"
+    CASH = "Cash"
+    CHECK = "Check"
     CREDIT = "Credit"
     DEBIT = "Debit"
-    INT = "Int"
+    DEP = "Dep"
+    DIRECTDEBIT = "DirectDebit"
+    DIRECTDEP = "DirectDep"
     DIV = "Div"
     FEE = "Fee"
-    SERCHG = "SerChg"
-    DEP = "Dep"
-    ATM = "Atm"
-    POS = "Pos"
-    XFER = "Xfer"
-    CHECK = "Check"
-    PAYMENT = "Payment"
-    CASH = "Cash"
-    DIRECTDEP = "DirectDep"
-    DIRECTDEBIT = "DirectDebit"
-    REPEATPMT = "RepeatPmt"
+    INT = "Int"
     OTHER = "Other"
+    PAYMENT = "Payment"
+    POS = "Pos"
+    REPEATPMT = "RepeatPmt"
+    SERCHG = "SerChg"
+    UNKNOWN = "Unknown"
+    XFER = "Xfer"
 
     def __str__(self) -> str:
         return str(self.value)

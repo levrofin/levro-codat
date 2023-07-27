@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_invoicing_status import CodatDataContractsDatasetsInvoicingStatus
@@ -10,6 +10,9 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_customer_ref import CodatDataContractsDatasetsCustomerRef
+    from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+        CodatDataContractsDatasetsDataInterfacesSupplementalData,
+    )
     from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
     from ..models.codat_data_contracts_datasets_sales_order_line_item import (
         CodatDataContractsDatasetsSalesOrderLineItem,
@@ -20,7 +23,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsSalesOrder")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsSalesOrder:
     """
     Attributes:
@@ -43,6 +46,7 @@ class CodatDataContractsDatasetsSalesOrder:
         total_amount (Union[Unset, float]):
         modified_date (Union[Unset, None, datetime.datetime]):
         source_modified_date (Union[Unset, None, datetime.datetime]):
+        supplemental_data (Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]):
         metadata (Union[Unset, CodatDataContractsDatasetsMetadata]):
     """
 
@@ -65,6 +69,7 @@ class CodatDataContractsDatasetsSalesOrder:
     total_amount: Union[Unset, float] = UNSET
     modified_date: Union[Unset, None, datetime.datetime] = UNSET
     source_modified_date: Union[Unset, None, datetime.datetime] = UNSET
+    supplemental_data: Union[Unset, "CodatDataContractsDatasetsDataInterfacesSupplementalData"] = UNSET
     metadata: Union[Unset, "CodatDataContractsDatasetsMetadata"] = UNSET
 
     def to_dict(self) -> Dict[str, Any]:
@@ -121,6 +126,10 @@ class CodatDataContractsDatasetsSalesOrder:
         if not isinstance(self.source_modified_date, Unset):
             source_modified_date = self.source_modified_date.isoformat() if self.source_modified_date else None
 
+        supplemental_data: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.supplemental_data, Unset):
+            supplemental_data = self.supplemental_data.to_dict()
+
         metadata: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.metadata, Unset):
             metadata = self.metadata.to_dict()
@@ -165,6 +174,8 @@ class CodatDataContractsDatasetsSalesOrder:
             field_dict["modifiedDate"] = modified_date
         if source_modified_date is not UNSET:
             field_dict["sourceModifiedDate"] = source_modified_date
+        if supplemental_data is not UNSET:
+            field_dict["supplementalData"] = supplemental_data
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
 
@@ -173,6 +184,9 @@ class CodatDataContractsDatasetsSalesOrder:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.codat_data_contracts_datasets_customer_ref import CodatDataContractsDatasetsCustomerRef
+        from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+            CodatDataContractsDatasetsDataInterfacesSupplementalData,
+        )
         from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
         from ..models.codat_data_contracts_datasets_sales_order_line_item import (
             CodatDataContractsDatasetsSalesOrderLineItem,
@@ -269,6 +283,13 @@ class CodatDataContractsDatasetsSalesOrder:
         else:
             source_modified_date = isoparse(_source_modified_date)
 
+        _supplemental_data = d.pop("supplementalData", UNSET)
+        supplemental_data: Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]
+        if isinstance(_supplemental_data, Unset):
+            supplemental_data = UNSET
+        else:
+            supplemental_data = CodatDataContractsDatasetsDataInterfacesSupplementalData.from_dict(_supplemental_data)
+
         _metadata = d.pop("metadata", UNSET)
         metadata: Union[Unset, CodatDataContractsDatasetsMetadata]
         if isinstance(_metadata, Unset):
@@ -296,6 +317,7 @@ class CodatDataContractsDatasetsSalesOrder:
             total_amount=total_amount,
             modified_date=modified_date,
             source_modified_date=source_modified_date,
+            supplemental_data=supplemental_data,
             metadata=metadata,
         )
 

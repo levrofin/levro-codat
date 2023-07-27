@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
-import attr
+from attrs import define, field
 
 if TYPE_CHECKING:
     from ..models.codat_public_api_models_data_data_status import CodatPublicApiModelsDataDataStatus
@@ -9,11 +9,11 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="GetCompaniesCompanyIdDataStatusResponse200")
 
 
-@attr.s(auto_attribs=True)
+@define
 class GetCompaniesCompanyIdDataStatusResponse200:
     """ """
 
-    additional_properties: Dict[str, "CodatPublicApiModelsDataDataStatus"] = attr.ib(init=False, factory=dict)
+    additional_properties: Dict[str, "CodatPublicApiModelsDataDataStatus"] = field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         pass

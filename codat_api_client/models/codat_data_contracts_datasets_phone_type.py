@@ -2,11 +2,11 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsPhoneType(str, Enum):
-    UNKNOWN = "Unknown"
-    PRIMARY = "Primary"
+    FAX = "Fax"
     LANDLINE = "Landline"
     MOBILE = "Mobile"
-    FAX = "Fax"
+    PRIMARY = "Primary"
+    UNKNOWN = "Unknown"
 
     def __str__(self) -> str:
         return str(self.value)

@@ -1,6 +1,6 @@
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_data_contracts_datasets_bill_payment_link_type import CodatDataContractsDatasetsBillPaymentLinkType
 from ..types import UNSET, Unset
@@ -8,7 +8,7 @@ from ..types import UNSET, Unset
 T = TypeVar("T", bound="CodatDataContractsDatasetsBillPaymentLineLink")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsBillPaymentLineLink:
     """
     Attributes:

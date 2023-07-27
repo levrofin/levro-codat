@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_data_contracts_push_push_change_type import CodatDataContractsPushPushChangeType
 from ..types import UNSET, Unset
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsPushPushOperationChange")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsPushPushOperationChange:
     """
     Attributes:

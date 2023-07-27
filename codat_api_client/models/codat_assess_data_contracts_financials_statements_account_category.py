@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_assess_data_contracts_financials_statements_account_category_status import (
     CodatAssessDataContractsFinancialsStatementsAccountCategoryStatus,
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatAssessDataContractsFinancialsStatementsAccountCategory")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatAssessDataContractsFinancialsStatementsAccountCategory:
     """
     Attributes:

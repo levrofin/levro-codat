@@ -1,7 +1,7 @@
 import datetime
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_tracking_category_status import (
@@ -9,10 +9,17 @@ from ..models.codat_data_contracts_datasets_tracking_category_status import (
 )
 from ..types import UNSET, Unset
 
+if TYPE_CHECKING:
+    from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+        CodatDataContractsDatasetsDataInterfacesSupplementalData,
+    )
+    from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
+
+
 T = TypeVar("T", bound="CodatPublicApiModelsDataTrackingCategoryTree")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatPublicApiModelsDataTrackingCategoryTree:
     """
     Attributes:
@@ -25,6 +32,8 @@ class CodatPublicApiModelsDataTrackingCategoryTree:
         name (Union[Unset, None, str]): The name of the tracking category
         has_children (Union[Unset, bool]): Boolean value indicating whether this category has SubCategories
         status (Union[Unset, CodatDataContractsDatasetsTrackingCategoryStatus]):
+        metadata (Union[Unset, CodatDataContractsDatasetsMetadata]):
+        supplemental_data (Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]):
     """
 
     sub_categories: Union[Unset, None, List["CodatPublicApiModelsDataTrackingCategoryTree"]] = UNSET
@@ -35,6 +44,8 @@ class CodatPublicApiModelsDataTrackingCategoryTree:
     name: Union[Unset, None, str] = UNSET
     has_children: Union[Unset, bool] = UNSET
     status: Union[Unset, CodatDataContractsDatasetsTrackingCategoryStatus] = UNSET
+    metadata: Union[Unset, "CodatDataContractsDatasetsMetadata"] = UNSET
+    supplemental_data: Union[Unset, "CodatDataContractsDatasetsDataInterfacesSupplementalData"] = UNSET
 
     def to_dict(self) -> Dict[str, Any]:
         sub_categories: Union[Unset, None, List[Dict[str, Any]]] = UNSET
@@ -64,6 +75,14 @@ class CodatPublicApiModelsDataTrackingCategoryTree:
         if not isinstance(self.status, Unset):
             status = self.status.value
 
+        metadata: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.metadata, Unset):
+            metadata = self.metadata.to_dict()
+
+        supplemental_data: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.supplemental_data, Unset):
+            supplemental_data = self.supplemental_data.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update({})
         if sub_categories is not UNSET:
@@ -82,11 +101,20 @@ class CodatPublicApiModelsDataTrackingCategoryTree:
             field_dict["hasChildren"] = has_children
         if status is not UNSET:
             field_dict["status"] = status
+        if metadata is not UNSET:
+            field_dict["metadata"] = metadata
+        if supplemental_data is not UNSET:
+            field_dict["supplementalData"] = supplemental_data
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+            CodatDataContractsDatasetsDataInterfacesSupplementalData,
+        )
+        from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
+
         d = src_dict.copy()
         sub_categories = []
         _sub_categories = d.pop("subCategories", UNSET)
@@ -128,6 +156,20 @@ class CodatPublicApiModelsDataTrackingCategoryTree:
         else:
             status = CodatDataContractsDatasetsTrackingCategoryStatus(_status)
 
+        _metadata = d.pop("metadata", UNSET)
+        metadata: Union[Unset, CodatDataContractsDatasetsMetadata]
+        if isinstance(_metadata, Unset):
+            metadata = UNSET
+        else:
+            metadata = CodatDataContractsDatasetsMetadata.from_dict(_metadata)
+
+        _supplemental_data = d.pop("supplementalData", UNSET)
+        supplemental_data: Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]
+        if isinstance(_supplemental_data, Unset):
+            supplemental_data = UNSET
+        else:
+            supplemental_data = CodatDataContractsDatasetsDataInterfacesSupplementalData.from_dict(_supplemental_data)
+
         codat_public_api_models_data_tracking_category_tree = cls(
             sub_categories=sub_categories,
             id=id,
@@ -137,6 +179,8 @@ class CodatPublicApiModelsDataTrackingCategoryTree:
             name=name,
             has_children=has_children,
             status=status,
+            metadata=metadata,
+            supplemental_data=supplemental_data,
         )
 
         return codat_public_api_models_data_tracking_category_tree

@@ -1,13 +1,13 @@
 import datetime
 from typing import Any, Dict, Type, TypeVar
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 T = TypeVar("T", bound="CodatPublicApiModelsCompanyCompanyEventStreamItem")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatPublicApiModelsCompanyCompanyEventStreamItem:
     """
     Attributes:

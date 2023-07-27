@@ -2,16 +2,16 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsPaymentLinkType(str, Enum):
-    UNKNOWN = "Unknown"
-    UNLINKED = "Unlinked"
-    INVOICE = "Invoice"
     CREDITNOTE = "CreditNote"
+    DISCOUNT = "Discount"
+    INVOICE = "Invoice"
+    MANUALJOURNAL = "ManualJournal"
     OTHER = "Other"
-    REFUND = "Refund"
     PAYMENT = "Payment"
     PAYMENTONACCOUNT = "PaymentOnAccount"
-    MANUALJOURNAL = "ManualJournal"
-    DISCOUNT = "Discount"
+    REFUND = "Refund"
+    UNKNOWN = "Unknown"
+    UNLINKED = "Unlinked"
 
     def __str__(self) -> str:
         return str(self.value)

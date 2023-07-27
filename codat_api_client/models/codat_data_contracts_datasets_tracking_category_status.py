@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsTrackingCategoryStatus(str, Enum):
-    UNKNOWN = "Unknown"
     ACTIVE = "Active"
     ARCHIVED = "Archived"
+    UNKNOWN = "Unknown"
 
     def __str__(self) -> str:
         return str(self.value)

@@ -2,12 +2,12 @@ from enum import Enum
 
 
 class CodatDataIntegrityContractsMetadataRunStatus(str, Enum):
-    UNKNOWN = "Unknown"
+    COMPLETE = "Complete"
+    COMPLETEWITHWARNING = "CompleteWithWarning"
     DOESNOTEXIST = "DoesNotExist"
     ERROR = "Error"
     PROCESSING = "Processing"
-    COMPLETEWITHWARNING = "CompleteWithWarning"
-    COMPLETE = "Complete"
+    UNKNOWN = "Unknown"
 
     def __str__(self) -> str:
         return str(self.value)

@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..types import UNSET, Unset
 
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsDatasetsItemPagedResponseModel")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsItemPagedResponseModel:
     """Used to represent what can be returned by an endpoint that supports paging.
     Usable with the [ProducesResponseType] attribute on a controller action.

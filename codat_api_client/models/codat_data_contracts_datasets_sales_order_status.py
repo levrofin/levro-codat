@@ -2,10 +2,10 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsSalesOrderStatus(str, Enum):
-    UNKNOWN = "Unknown"
+    CLOSED = "Closed"
     DRAFT = "Draft"
     OPEN = "Open"
-    CLOSED = "Closed"
+    UNKNOWN = "Unknown"
     VOID = "Void"
 
     def __str__(self) -> str:

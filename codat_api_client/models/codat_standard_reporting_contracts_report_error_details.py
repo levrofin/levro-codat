@@ -1,15 +1,15 @@
 from typing import Any, Dict, List, Optional, Type, TypeVar, cast
 
-import attr
+from attrs import define, field
 
 T = TypeVar("T", bound="CodatStandardReportingContractsReportErrorDetails")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatStandardReportingContractsReportErrorDetails:
     """ """
 
-    additional_properties: Dict[str, Optional[List[str]]] = attr.ib(init=False, factory=dict)
+    additional_properties: Dict[str, Optional[List[str]]] = field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         field_dict: Dict[str, Any] = {}

@@ -2,12 +2,12 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsCreditNoteStatus(str, Enum):
-    UNKNOWN = "Unknown"
     DRAFT = "Draft"
-    SUBMITTED = "Submitted"
     PAID = "Paid"
-    VOID = "Void"
     PARTIALLYPAID = "PartiallyPaid"
+    SUBMITTED = "Submitted"
+    UNKNOWN = "Unknown"
+    VOID = "Void"
 
     def __str__(self) -> str:
         return str(self.value)

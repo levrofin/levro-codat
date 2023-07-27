@@ -1,40 +1,7 @@
 """ Contains all the data models used in inputs/outputs """
 
-from .codat_assess_data_contracts_account_categories_account_categories_model import (
-    CodatAssessDataContractsAccountCategoriesAccountCategoriesModel,
-)
-from .codat_assess_data_contracts_account_categories_account_categories_model_paged_response_href_model import (
-    CodatAssessDataContractsAccountCategoriesAccountCategoriesModelPagedResponseHrefModel,
-)
-from .codat_assess_data_contracts_account_categories_account_categories_model_paged_response_links_model import (
-    CodatAssessDataContractsAccountCategoriesAccountCategoriesModelPagedResponseLinksModel,
-)
-from .codat_assess_data_contracts_account_categories_account_categories_model_paged_response_model import (
-    CodatAssessDataContractsAccountCategoriesAccountCategoriesModelPagedResponseModel,
-)
-from .codat_assess_data_contracts_account_categories_account_category import (
-    CodatAssessDataContractsAccountCategoriesAccountCategory,
-)
-from .codat_assess_data_contracts_account_categories_account_ref_model import (
-    CodatAssessDataContractsAccountCategoriesAccountRefModel,
-)
-from .codat_assess_data_contracts_account_categories_confirmed_account_category_model import (
-    CodatAssessDataContractsAccountCategoriesConfirmedAccountCategoryModel,
-)
-from .codat_assess_data_contracts_account_categories_patch_account_categories_model import (
-    CodatAssessDataContractsAccountCategoriesPatchAccountCategoriesModel,
-)
-from .codat_assess_data_contracts_account_categories_patch_account_category_model import (
-    CodatAssessDataContractsAccountCategoriesPatchAccountCategoryModel,
-)
-from .codat_assess_data_contracts_account_categories_patch_account_ref_model import (
-    CodatAssessDataContractsAccountCategoriesPatchAccountRefModel,
-)
-from .codat_assess_data_contracts_account_categories_patch_single_account_category_model import (
-    CodatAssessDataContractsAccountCategoriesPatchSingleAccountCategoryModel,
-)
-from .codat_assess_data_contracts_account_categories_suggested_account_category_model import (
-    CodatAssessDataContractsAccountCategoriesSuggestedAccountCategoryModel,
+from .codat_assess_data_contracts_cash_flow_transactions_account_ref import (
+    CodatAssessDataContractsCashFlowTransactionsAccountRef,
 )
 from .codat_assess_data_contracts_cash_flow_transactions_accounts_data_source import (
     CodatAssessDataContractsCashFlowTransactionsAccountsDataSource,
@@ -62,49 +29,7 @@ from .codat_assess_data_contracts_cash_flow_transactions_transactions_data_sourc
 )
 from .codat_assess_data_contracts_commerce_metrics_period_unit import CodatAssessDataContractsCommerceMetricsPeriodUnit
 from .codat_assess_data_contracts_common_paged_report_info import CodatAssessDataContractsCommonPagedReportInfo
-from .codat_assess_data_contracts_financials_metrics_financial_metrics_data_set import (
-    CodatAssessDataContractsFinancialsMetricsFinancialMetricsDataSet,
-)
-from .codat_assess_data_contracts_financials_metrics_metric import CodatAssessDataContractsFinancialsMetricsMetric
-from .codat_assess_data_contracts_financials_metrics_metric_data_set_error import (
-    CodatAssessDataContractsFinancialsMetricsMetricDataSetError,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_data_set_error_type import (
-    CodatAssessDataContractsFinancialsMetricsMetricDataSetErrorType,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_error import (
-    CodatAssessDataContractsFinancialsMetricsMetricError,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_error_details import (
-    CodatAssessDataContractsFinancialsMetricsMetricErrorDetails,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_error_type import (
-    CodatAssessDataContractsFinancialsMetricsMetricErrorType,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_key import (
-    CodatAssessDataContractsFinancialsMetricsMetricKey,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_period import (
-    CodatAssessDataContractsFinancialsMetricsMetricPeriod,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_period_error import (
-    CodatAssessDataContractsFinancialsMetricsMetricPeriodError,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_period_error_details import (
-    CodatAssessDataContractsFinancialsMetricsMetricPeriodErrorDetails,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_period_error_type import (
-    CodatAssessDataContractsFinancialsMetricsMetricPeriodErrorType,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_period_input import (
-    CodatAssessDataContractsFinancialsMetricsMetricPeriodInput,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_period_unit import (
-    CodatAssessDataContractsFinancialsMetricsMetricPeriodUnit,
-)
-from .codat_assess_data_contracts_financials_metrics_metric_unit import (
-    CodatAssessDataContractsFinancialsMetricsMetricUnit,
-)
+from .codat_assess_data_contracts_common_report_info import CodatAssessDataContractsCommonReportInfo
 from .codat_assess_data_contracts_financials_statements_account_category import (
     CodatAssessDataContractsFinancialsStatementsAccountCategory,
 )
@@ -123,6 +48,15 @@ from .codat_assess_data_contracts_financials_statements_financial_statement_repo
 from .codat_assess_data_contracts_financials_statements_financial_statement_report_item import (
     CodatAssessDataContractsFinancialsStatementsFinancialStatementReportItem,
 )
+from .codat_assess_data_contracts_loans_integration_type import CodatAssessDataContractsLoansIntegrationType
+from .codat_assess_data_contracts_loans_loan_item import CodatAssessDataContractsLoansLoanItem
+from .codat_assess_data_contracts_loans_loan_record_ref import CodatAssessDataContractsLoansLoanRecordRef
+from .codat_assess_data_contracts_loans_loan_summary import CodatAssessDataContractsLoansLoanSummary
+from .codat_assess_data_contracts_loans_loan_summary_report import CodatAssessDataContractsLoansLoanSummaryReport
+from .codat_assess_data_contracts_loans_loan_transactions_report import (
+    CodatAssessDataContractsLoansLoanTransactionsReport,
+)
+from .codat_assess_data_contracts_loans_record_ref import CodatAssessDataContractsLoansRecordRef
 from .codat_clients_api_client_contract_client_sync_settings import CodatClientsApiClientContractClientSyncSettings
 from .codat_clients_api_client_contract_company_settings import CodatClientsApiClientContractCompanySettings
 from .codat_clients_api_client_contract_company_sync_settings import CodatClientsApiClientContractCompanySyncSettings
@@ -685,6 +619,7 @@ from .codat_data_contracts_datasets_supplier_paged_response_model import (
 from .codat_data_contracts_datasets_supplier_push_operation import CodatDataContractsDatasetsSupplierPushOperation
 from .codat_data_contracts_datasets_supplier_ref import CodatDataContractsDatasetsSupplierRef
 from .codat_data_contracts_datasets_supplier_status import CodatDataContractsDatasetsSupplierStatus
+from .codat_data_contracts_datasets_tax_info import CodatDataContractsDatasetsTaxInfo
 from .codat_data_contracts_datasets_tax_rate import CodatDataContractsDatasetsTaxRate
 from .codat_data_contracts_datasets_tax_rate_component import CodatDataContractsDatasetsTaxRateComponent
 from .codat_data_contracts_datasets_tax_rate_paged_response_href_model import (
@@ -756,6 +691,13 @@ from .codat_data_integrity_contracts_metadata_match_status_info import (
     CodatDataIntegrityContractsMetadataMatchStatusInfo,
 )
 from .codat_data_integrity_contracts_metadata_run_status import CodatDataIntegrityContractsMetadataRunStatus
+from .codat_data_integrity_contracts_reports_banking_transaction_ref import (
+    CodatDataIntegrityContractsReportsBankingTransactionRef,
+)
+from .codat_data_integrity_contracts_reports_customer_ref import CodatDataIntegrityContractsReportsCustomerRef
+from .codat_data_integrity_contracts_reports_invoice import CodatDataIntegrityContractsReportsInvoice
+from .codat_data_integrity_contracts_reports_invoices_report import CodatDataIntegrityContractsReportsInvoicesReport
+from .codat_data_integrity_contracts_reports_payment import CodatDataIntegrityContractsReportsPayment
 from .codat_data_integrity_contracts_summary_match_amount_summary import (
     CodatDataIntegrityContractsSummaryMatchAmountSummary,
 )
@@ -775,9 +717,6 @@ from .codat_public_api_models_clients_banking_settings_models_bank_setting impor
 )
 from .codat_public_api_models_clients_banking_settings_models_bank_settings_dataset import (
     CodatPublicApiModelsClientsBankingSettingsModelsBankSettingsDataset,
-)
-from .codat_public_api_models_clients_client_company_metrics_model import (
-    CodatPublicApiModelsClientsClientCompanyMetricsModel,
 )
 from .codat_public_api_models_clients_client_settings_model import CodatPublicApiModelsClientsClientSettingsModel
 from .codat_public_api_models_clients_client_settings_patch_model import (
@@ -860,6 +799,10 @@ from .codat_public_api_models_data_account_status_response import CodatPublicApi
 from .codat_public_api_models_data_account_type_response import CodatPublicApiModelsDataAccountTypeResponse
 from .codat_public_api_models_data_balance_sheet_response import CodatPublicApiModelsDataBalanceSheetResponse
 from .codat_public_api_models_data_cash_flow_statement_response import CodatPublicApiModelsDataCashFlowStatementResponse
+from .codat_public_api_models_data_connection_args import CodatPublicApiModelsDataConnectionArgs
+from .codat_public_api_models_data_connection_args_connection_info import (
+    CodatPublicApiModelsDataConnectionArgsConnectionInfo,
+)
 from .codat_public_api_models_data_data_set import CodatPublicApiModelsDataDataSet
 from .codat_public_api_models_data_data_set_paged_response_href_model import (
     CodatPublicApiModelsDataDataSetPagedResponseHrefModel,
@@ -900,9 +843,6 @@ from .codat_public_api_models_platform_credentials_enabled_args import (
 )
 from .codat_public_api_models_platform_credentials_integration_supported_environments import (
     CodatPublicApiModelsPlatformCredentialsIntegrationSupportedEnvironments,
-)
-from .codat_public_api_models_platform_credentials_platform_credentials import (
-    CodatPublicApiModelsPlatformCredentialsPlatformCredentials,
 )
 from .codat_public_api_models_platform_credentials_platform_source_model import (
     CodatPublicApiModelsPlatformCredentialsPlatformSourceModel,
@@ -958,7 +898,14 @@ from .codat_standard_reporting_contracts_report_report_info import CodatStandard
 from .codat_standardization_bank_feeds_accounts_contract_bank_feed_bank_account import (
     CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount,
 )
+from .codat_standardization_bank_feeds_accounts_contract_bank_feed_bank_account_mapping import (
+    CodatStandardizationBankFeedsAccountsContractBankFeedBankAccountMapping,
+)
+from .delete_integrations_credentials_platform_key_response_200 import (
+    DeleteIntegrationsCredentialsPlatformKeyResponse200,
+)
 from .get_companies_company_id_data_status_response_200 import GetCompaniesCompanyIdDataStatusResponse200
+from .get_integrations_credentials_platform_key_response_200 import GetIntegrationsCredentialsPlatformKeyResponse200
 from .patch_companies_company_id_connections_connection_id_json_body import (
     PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody,
 )
@@ -967,24 +914,15 @@ from .put_companies_company_id_connections_connection_id_authorization_json_body
     PutCompaniesCompanyIdConnectionsConnectionIdAuthorizationJsonBody,
 )
 from .put_integrations_credentials_platform_key_json_body import PutIntegrationsCredentialsPlatformKeyJsonBody
+from .put_integrations_credentials_platform_key_response_200 import PutIntegrationsCredentialsPlatformKeyResponse200
+from .system_io_stream import SystemIOStream
 from .system_object_push_operation import SystemObjectPushOperation
 from .system_object_push_operation_paged_response_href_model import SystemObjectPushOperationPagedResponseHrefModel
 from .system_object_push_operation_paged_response_links_model import SystemObjectPushOperationPagedResponseLinksModel
 from .system_object_push_operation_paged_response_model import SystemObjectPushOperationPagedResponseModel
 
 __all__ = (
-    "CodatAssessDataContractsAccountCategoriesAccountCategoriesModel",
-    "CodatAssessDataContractsAccountCategoriesAccountCategoriesModelPagedResponseHrefModel",
-    "CodatAssessDataContractsAccountCategoriesAccountCategoriesModelPagedResponseLinksModel",
-    "CodatAssessDataContractsAccountCategoriesAccountCategoriesModelPagedResponseModel",
-    "CodatAssessDataContractsAccountCategoriesAccountCategory",
-    "CodatAssessDataContractsAccountCategoriesAccountRefModel",
-    "CodatAssessDataContractsAccountCategoriesConfirmedAccountCategoryModel",
-    "CodatAssessDataContractsAccountCategoriesPatchAccountCategoriesModel",
-    "CodatAssessDataContractsAccountCategoriesPatchAccountCategoryModel",
-    "CodatAssessDataContractsAccountCategoriesPatchAccountRefModel",
-    "CodatAssessDataContractsAccountCategoriesPatchSingleAccountCategoryModel",
-    "CodatAssessDataContractsAccountCategoriesSuggestedAccountCategoryModel",
+    "CodatAssessDataContractsCashFlowTransactionsAccountRef",
     "CodatAssessDataContractsCashFlowTransactionsAccountsDataSource",
     "CodatAssessDataContractsCashFlowTransactionsCashFlowReportBankingAccount",
     "CodatAssessDataContractsCashFlowTransactionsCashFlowReportBankingTransaction",
@@ -995,27 +933,20 @@ __all__ = (
     "CodatAssessDataContractsCashFlowTransactionsTransactionsDataSource",
     "CodatAssessDataContractsCommerceMetricsPeriodUnit",
     "CodatAssessDataContractsCommonPagedReportInfo",
-    "CodatAssessDataContractsFinancialsMetricsFinancialMetricsDataSet",
-    "CodatAssessDataContractsFinancialsMetricsMetric",
-    "CodatAssessDataContractsFinancialsMetricsMetricDataSetError",
-    "CodatAssessDataContractsFinancialsMetricsMetricDataSetErrorType",
-    "CodatAssessDataContractsFinancialsMetricsMetricError",
-    "CodatAssessDataContractsFinancialsMetricsMetricErrorDetails",
-    "CodatAssessDataContractsFinancialsMetricsMetricErrorType",
-    "CodatAssessDataContractsFinancialsMetricsMetricKey",
-    "CodatAssessDataContractsFinancialsMetricsMetricPeriod",
-    "CodatAssessDataContractsFinancialsMetricsMetricPeriodError",
-    "CodatAssessDataContractsFinancialsMetricsMetricPeriodErrorDetails",
-    "CodatAssessDataContractsFinancialsMetricsMetricPeriodErrorType",
-    "CodatAssessDataContractsFinancialsMetricsMetricPeriodInput",
-    "CodatAssessDataContractsFinancialsMetricsMetricPeriodUnit",
-    "CodatAssessDataContractsFinancialsMetricsMetricUnit",
+    "CodatAssessDataContractsCommonReportInfo",
     "CodatAssessDataContractsFinancialsStatementsAccountCategory",
     "CodatAssessDataContractsFinancialsStatementsAccountCategoryLevel",
     "CodatAssessDataContractsFinancialsStatementsAccountCategoryStatus",
     "CodatAssessDataContractsFinancialsStatementsEnhancedFinancialStatement",
     "CodatAssessDataContractsFinancialsStatementsFinancialStatementReportInfo",
     "CodatAssessDataContractsFinancialsStatementsFinancialStatementReportItem",
+    "CodatAssessDataContractsLoansIntegrationType",
+    "CodatAssessDataContractsLoansLoanItem",
+    "CodatAssessDataContractsLoansLoanRecordRef",
+    "CodatAssessDataContractsLoansLoanSummary",
+    "CodatAssessDataContractsLoansLoanSummaryReport",
+    "CodatAssessDataContractsLoansLoanTransactionsReport",
+    "CodatAssessDataContractsLoansRecordRef",
     "CodatClientsApiClientContractClientSyncSettings",
     "CodatClientsApiClientContractCompanySettings",
     "CodatClientsApiClientContractCompanySyncSettings",
@@ -1298,6 +1229,7 @@ __all__ = (
     "CodatDataContractsDatasetsSupplierPushOperation",
     "CodatDataContractsDatasetsSupplierRef",
     "CodatDataContractsDatasetsSupplierStatus",
+    "CodatDataContractsDatasetsTaxInfo",
     "CodatDataContractsDatasetsTaxRate",
     "CodatDataContractsDatasetsTaxRateComponent",
     "CodatDataContractsDatasetsTaxRatePagedResponseHrefModel",
@@ -1343,6 +1275,11 @@ __all__ = (
     "CodatDataIntegrityContractsMetadataMatchMetadataResponse",
     "CodatDataIntegrityContractsMetadataMatchStatusInfo",
     "CodatDataIntegrityContractsMetadataRunStatus",
+    "CodatDataIntegrityContractsReportsBankingTransactionRef",
+    "CodatDataIntegrityContractsReportsCustomerRef",
+    "CodatDataIntegrityContractsReportsInvoice",
+    "CodatDataIntegrityContractsReportsInvoicesReport",
+    "CodatDataIntegrityContractsReportsPayment",
     "CodatDataIntegrityContractsSummaryMatchAmountSummary",
     "CodatDataIntegrityContractsSummaryMatchCountSummary",
     "CodatDataIntegrityContractsSummaryMatchSummariesResponse",
@@ -1351,7 +1288,6 @@ __all__ = (
     "CodatPublicApiModelsClientsBankingSettingsModelsBankIntegration",
     "CodatPublicApiModelsClientsBankingSettingsModelsBankSetting",
     "CodatPublicApiModelsClientsBankingSettingsModelsBankSettingsDataset",
-    "CodatPublicApiModelsClientsClientCompanyMetricsModel",
     "CodatPublicApiModelsClientsClientSettingsModel",
     "CodatPublicApiModelsClientsClientSettingsPatchModel",
     "CodatPublicApiModelsClientsClientSyncSettingsModel",
@@ -1389,6 +1325,8 @@ __all__ = (
     "CodatPublicApiModelsDataAccountTypeResponse",
     "CodatPublicApiModelsDataBalanceSheetResponse",
     "CodatPublicApiModelsDataCashFlowStatementResponse",
+    "CodatPublicApiModelsDataConnectionArgs",
+    "CodatPublicApiModelsDataConnectionArgsConnectionInfo",
     "CodatPublicApiModelsDataDataSet",
     "CodatPublicApiModelsDataDataSetPagedResponseHrefModel",
     "CodatPublicApiModelsDataDataSetPagedResponseLinksModel",
@@ -1408,7 +1346,6 @@ __all__ = (
     "CodatPublicApiModelsPlatformCredentialsDatatypeFeatures",
     "CodatPublicApiModelsPlatformCredentialsEnabledArgs",
     "CodatPublicApiModelsPlatformCredentialsIntegrationSupportedEnvironments",
-    "CodatPublicApiModelsPlatformCredentialsPlatformCredentials",
     "CodatPublicApiModelsPlatformCredentialsPlatformSourceModel",
     "CodatPublicApiModelsPlatformCredentialsPlatformSourceModelPagedResponseHrefModel",
     "CodatPublicApiModelsPlatformCredentialsPlatformSourceModelPagedResponseLinksModel",
@@ -1431,6 +1368,7 @@ __all__ = (
     "CodatPullMessagesContractsMapMessage",
     "CodatPullMessagesContractsValidationMessage",
     "CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount",
+    "CodatStandardizationBankFeedsAccountsContractBankFeedBankAccountMapping",
     "CodatStandardReportingContractsIDimension",
     "CodatStandardReportingContractsIDimensionItem",
     "CodatStandardReportingContractsIReportDataMeasure",
@@ -1441,11 +1379,15 @@ __all__ = (
     "CodatStandardReportingContractsReportErrorDetails",
     "CodatStandardReportingContractsReportErrorType",
     "CodatStandardReportingContractsReportReportInfo",
+    "DeleteIntegrationsCredentialsPlatformKeyResponse200",
     "GetCompaniesCompanyIdDataStatusResponse200",
+    "GetIntegrationsCredentialsPlatformKeyResponse200",
     "PatchCompaniesCompanyIdConnectionsConnectionIdJsonBody",
     "PostCompaniesCompanyIdConnectionsJsonBody",
     "PutCompaniesCompanyIdConnectionsConnectionIdAuthorizationJsonBody",
     "PutIntegrationsCredentialsPlatformKeyJsonBody",
+    "PutIntegrationsCredentialsPlatformKeyResponse200",
+    "SystemIOStream",
     "SystemObjectPushOperation",
     "SystemObjectPushOperationPagedResponseHrefModel",
     "SystemObjectPushOperationPagedResponseLinksModel",

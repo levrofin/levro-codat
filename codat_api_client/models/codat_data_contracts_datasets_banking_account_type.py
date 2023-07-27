@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsBankingAccountType(str, Enum):
-    UNKNOWN = "Unknown"
     CREDIT = "Credit"
     DEBIT = "Debit"
+    UNKNOWN = "Unknown"
 
     def __str__(self) -> str:
         return str(self.value)

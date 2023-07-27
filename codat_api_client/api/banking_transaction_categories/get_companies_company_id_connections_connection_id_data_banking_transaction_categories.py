@@ -15,18 +15,12 @@ def _get_kwargs(
     company_id: str,
     connection_id: str,
     *,
-    client: AuthenticatedClient,
     page: int = 1,
     page_size: Union[Unset, None, int] = 100,
     query: Union[Unset, None, str] = UNSET,
     order_by: Union[Unset, None, str] = UNSET,
 ) -> Dict[str, Any]:
-    url = "{}/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories".format(
-        client.base_url, companyId=company_id, connectionId=connection_id
-    )
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     params: Dict[str, Any] = {}
     params["page"] = page
@@ -41,29 +35,29 @@ def _get_kwargs(
 
     return {
         "method": "get",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/companies/{companyId}/connections/{connectionId}/data/banking-transactionCategories".format(
+            companyId=company_id,
+            connectionId=connection_id,
+        ),
         "params": params,
     }
 
 
 def _parse_response(
-    *, client: Client, response: httpx.Response
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
 ) -> Optional[CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel]:
     if response.status_code == HTTPStatus.OK:
         response_200 = CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
 def _build_response(
-    *, client: Client, response: httpx.Response
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
 ) -> Response[CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -106,15 +100,13 @@ def sync_detailed(
     kwargs = _get_kwargs(
         company_id=company_id,
         connection_id=connection_id,
-        client=client,
         page=page,
         page_size=page_size,
         query=query,
         order_by=order_by,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -148,7 +140,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel]
+        CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel
     """
 
     return sync_detailed(
@@ -195,15 +187,13 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         company_id=company_id,
         connection_id=connection_id,
-        client=client,
         page=page,
         page_size=page_size,
         query=query,
         order_by=order_by,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -235,7 +225,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel]
+        CodatDataContractsDatasetsBankingTransactionCategoryPagedResponseModel
     """
 
     return (

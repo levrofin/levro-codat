@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsWebLinkType(str, Enum):
+    SOCIAL = "Social"
     UNKNOWN = "Unknown"
     WEBSITE = "Website"
-    SOCIAL = "Social"
 
     def __str__(self) -> str:
         return str(self.value)

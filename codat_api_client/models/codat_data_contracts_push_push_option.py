@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_data_contracts_push_option_type import CodatDataContractsPushOptionType
 from ..types import UNSET, Unset
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatDataContractsPushPushOption")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsPushPushOption:
     """
     Attributes:

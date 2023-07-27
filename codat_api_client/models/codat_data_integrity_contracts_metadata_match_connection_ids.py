@@ -1,13 +1,13 @@
 from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
-import attr
+from attrs import define
 
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CodatDataIntegrityContractsMetadataMatchConnectionIds")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataIntegrityContractsMetadataMatchConnectionIds:
     """
     Attributes:

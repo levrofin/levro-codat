@@ -17,17 +17,11 @@ def _get_kwargs(
     connection_id: str,
     purchase_order_id: str,
     *,
-    client: AuthenticatedClient,
     json_body: CodatDataContractsDatasetsPurchaseOrder,
     timeout_in_minutes: Union[Unset, None, int] = UNSET,
     force_update: Union[Unset, None, bool] = False,
 ) -> Dict[str, Any]:
-    url = "{}/companies/{companyId}/connections/{connectionId}/push/purchaseOrders/{purchaseOrderId}".format(
-        client.base_url, companyId=company_id, connectionId=connection_id, purchaseOrderId=purchase_order_id
-    )
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     params: Dict[str, Any] = {}
     params["timeoutInMinutes"] = timeout_in_minutes
@@ -40,30 +34,31 @@ def _get_kwargs(
 
     return {
         "method": "put",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/companies/{companyId}/connections/{connectionId}/push/purchaseOrders/{purchaseOrderId}".format(
+            companyId=company_id,
+            connectionId=connection_id,
+            purchaseOrderId=purchase_order_id,
+        ),
         "json": json_json_body,
         "params": params,
     }
 
 
 def _parse_response(
-    *, client: Client, response: httpx.Response
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
 ) -> Optional[CodatDataContractsDatasetsPurchaseOrderPushOperation]:
     if response.status_code == HTTPStatus.OK:
         response_200 = CodatDataContractsDatasetsPurchaseOrderPushOperation.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
 def _build_response(
-    *, client: Client, response: httpx.Response
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
 ) -> Response[CodatDataContractsDatasetsPurchaseOrderPushOperation]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -105,14 +100,12 @@ def sync_detailed(
         company_id=company_id,
         connection_id=connection_id,
         purchase_order_id=purchase_order_id,
-        client=client,
         json_body=json_body,
         timeout_in_minutes=timeout_in_minutes,
         force_update=force_update,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -144,7 +137,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatDataContractsDatasetsPurchaseOrderPushOperation]
+        CodatDataContractsDatasetsPurchaseOrderPushOperation
     """
 
     return sync_detailed(
@@ -190,14 +183,12 @@ async def asyncio_detailed(
         company_id=company_id,
         connection_id=connection_id,
         purchase_order_id=purchase_order_id,
-        client=client,
         json_body=json_body,
         timeout_in_minutes=timeout_in_minutes,
         force_update=force_update,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -227,7 +218,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatDataContractsDatasetsPurchaseOrderPushOperation]
+        CodatDataContractsDatasetsPurchaseOrderPushOperation
     """
 
     return (

@@ -1,20 +1,23 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_contracts_datasets_bank_account_type import CodatDataContractsDatasetsBankAccountType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+        CodatDataContractsDatasetsDataInterfacesSupplementalData,
+    )
     from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
 
 
 T = TypeVar("T", bound="CodatDataContractsDatasetsBankAccount")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsBankAccount:
     """
     Attributes:
@@ -28,6 +31,7 @@ class CodatDataContractsDatasetsBankAccount:
         currency (Union[Unset, None, str]):
         balance (Union[Unset, None, float]):
         institution (Union[Unset, None, str]):
+        supplemental_data (Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]):
         available_balance (Union[Unset, None, float]):
         modified_date (Union[Unset, None, datetime.datetime]):
         source_modified_date (Union[Unset, None, datetime.datetime]):
@@ -45,6 +49,7 @@ class CodatDataContractsDatasetsBankAccount:
     currency: Union[Unset, None, str] = UNSET
     balance: Union[Unset, None, float] = UNSET
     institution: Union[Unset, None, str] = UNSET
+    supplemental_data: Union[Unset, "CodatDataContractsDatasetsDataInterfacesSupplementalData"] = UNSET
     available_balance: Union[Unset, None, float] = UNSET
     modified_date: Union[Unset, None, datetime.datetime] = UNSET
     source_modified_date: Union[Unset, None, datetime.datetime] = UNSET
@@ -65,6 +70,10 @@ class CodatDataContractsDatasetsBankAccount:
         currency = self.currency
         balance = self.balance
         institution = self.institution
+        supplemental_data: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.supplemental_data, Unset):
+            supplemental_data = self.supplemental_data.to_dict()
+
         available_balance = self.available_balance
         modified_date: Union[Unset, None, str] = UNSET
         if not isinstance(self.modified_date, Unset):
@@ -101,6 +110,8 @@ class CodatDataContractsDatasetsBankAccount:
             field_dict["balance"] = balance
         if institution is not UNSET:
             field_dict["institution"] = institution
+        if supplemental_data is not UNSET:
+            field_dict["supplementalData"] = supplemental_data
         if available_balance is not UNSET:
             field_dict["availableBalance"] = available_balance
         if modified_date is not UNSET:
@@ -116,6 +127,9 @@ class CodatDataContractsDatasetsBankAccount:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+            CodatDataContractsDatasetsDataInterfacesSupplementalData,
+        )
         from ..models.codat_data_contracts_datasets_metadata import CodatDataContractsDatasetsMetadata
 
         d = src_dict.copy()
@@ -143,6 +157,13 @@ class CodatDataContractsDatasetsBankAccount:
         balance = d.pop("balance", UNSET)
 
         institution = d.pop("institution", UNSET)
+
+        _supplemental_data = d.pop("supplementalData", UNSET)
+        supplemental_data: Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]
+        if isinstance(_supplemental_data, Unset):
+            supplemental_data = UNSET
+        else:
+            supplemental_data = CodatDataContractsDatasetsDataInterfacesSupplementalData.from_dict(_supplemental_data)
 
         available_balance = d.pop("availableBalance", UNSET)
 
@@ -184,6 +205,7 @@ class CodatDataContractsDatasetsBankAccount:
             currency=currency,
             balance=balance,
             institution=institution,
+            supplemental_data=supplemental_data,
             available_balance=available_balance,
             modified_date=modified_date,
             source_modified_date=source_modified_date,

@@ -2,17 +2,17 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsCommerceDisputeStatus(str, Enum):
-    UNKNOWN = "Unknown"
-    WON = "Won"
-    LOST = "Lost"
     ACCEPTED = "Accepted"
-    PROCESSING = "Processing"
     CHARGEREFUNDED = "ChargeRefunded"
     EVIDENCEREQUIRED = "EvidenceRequired"
+    INQUIRYCLOSED = "InquiryClosed"
     INQUIRYEVIDENCEREQUIRED = "InquiryEvidenceRequired"
     INQUIRYPROCESSING = "InquiryProcessing"
-    INQUIRYCLOSED = "InquiryClosed"
+    LOST = "Lost"
+    PROCESSING = "Processing"
+    UNKNOWN = "Unknown"
     WAITINGTHIRDPARTY = "WaitingThirdParty"
+    WON = "Won"
 
     def __str__(self) -> str:
         return str(self.value)

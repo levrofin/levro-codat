@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 
 from ..models.codat_public_api_models_platform_credentials_data_provided_by import (
     CodatPublicApiModelsPlatformCredentialsDataProvidedBy,
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 T = TypeVar("T", bound="CodatPublicApiModelsPlatformCredentialsPlatformSourceModel")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatPublicApiModelsPlatformCredentialsPlatformSourceModel:
     """
     Attributes:

@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
@@ -9,7 +9,7 @@ from ..types import UNSET, Unset
 T = TypeVar("T", bound="CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
     """
     Attributes:
@@ -20,8 +20,8 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
         sort_code (Union[Unset, None, str]):
         currency (Union[Unset, None, str]):
         balance (Union[Unset, None, float]):
-        modified_date (Union[Unset, None, datetime.datetime]):
         status (Union[Unset, None, str]):
+        modified_date (Union[Unset, None, datetime.datetime]):
         feed_start_date (Union[Unset, None, datetime.datetime]):
     """
 
@@ -32,8 +32,8 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
     sort_code: Union[Unset, None, str] = UNSET
     currency: Union[Unset, None, str] = UNSET
     balance: Union[Unset, None, float] = UNSET
-    modified_date: Union[Unset, None, datetime.datetime] = UNSET
     status: Union[Unset, None, str] = UNSET
+    modified_date: Union[Unset, None, datetime.datetime] = UNSET
     feed_start_date: Union[Unset, None, datetime.datetime] = UNSET
 
     def to_dict(self) -> Dict[str, Any]:
@@ -44,11 +44,11 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
         sort_code = self.sort_code
         currency = self.currency
         balance = self.balance
+        status = self.status
         modified_date: Union[Unset, None, str] = UNSET
         if not isinstance(self.modified_date, Unset):
             modified_date = self.modified_date.isoformat() if self.modified_date else None
 
-        status = self.status
         feed_start_date: Union[Unset, None, str] = UNSET
         if not isinstance(self.feed_start_date, Unset):
             feed_start_date = self.feed_start_date.isoformat() if self.feed_start_date else None
@@ -69,10 +69,10 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
             field_dict["currency"] = currency
         if balance is not UNSET:
             field_dict["balance"] = balance
-        if modified_date is not UNSET:
-            field_dict["modifiedDate"] = modified_date
         if status is not UNSET:
             field_dict["status"] = status
+        if modified_date is not UNSET:
+            field_dict["modifiedDate"] = modified_date
         if feed_start_date is not UNSET:
             field_dict["feedStartDate"] = feed_start_date
 
@@ -95,6 +95,8 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
 
         balance = d.pop("balance", UNSET)
 
+        status = d.pop("status", UNSET)
+
         _modified_date = d.pop("modifiedDate", UNSET)
         modified_date: Union[Unset, None, datetime.datetime]
         if _modified_date is None:
@@ -103,8 +105,6 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
             modified_date = UNSET
         else:
             modified_date = isoparse(_modified_date)
-
-        status = d.pop("status", UNSET)
 
         _feed_start_date = d.pop("feedStartDate", UNSET)
         feed_start_date: Union[Unset, None, datetime.datetime]
@@ -123,8 +123,8 @@ class CodatStandardizationBankFeedsAccountsContractBankFeedBankAccount:
             sort_code=sort_code,
             currency=currency,
             balance=balance,
-            modified_date=modified_date,
             status=status,
+            modified_date=modified_date,
             feed_start_date=feed_start_date,
         )
 

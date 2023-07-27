@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Dict, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..models.codat_data_integrity_contracts_metadata_run_status import CodatDataIntegrityContractsMetadataRunStatus
@@ -10,7 +10,7 @@ from ..types import UNSET, Unset
 T = TypeVar("T", bound="CodatDataIntegrityContractsMetadataMatchStatusInfo")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataIntegrityContractsMetadataMatchStatusInfo:
     """
     Attributes:

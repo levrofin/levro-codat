@@ -1,11 +1,11 @@
 from typing import Any, Dict, Type, TypeVar
 
-import attr
+from attrs import define
 
 T = TypeVar("T", bound="CodatPublicApiModelsCompanyCompanySettings")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatPublicApiModelsCompanyCompanySettings:
     """
     Attributes:

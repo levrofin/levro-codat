@@ -1,51 +1,45 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.codat_public_api_models_platform_credentials_platform_credentials import (
-    CodatPublicApiModelsPlatformCredentialsPlatformCredentials,
+from ...models.delete_integrations_credentials_platform_key_response_200 import (
+    DeleteIntegrationsCredentialsPlatformKeyResponse200,
 )
 from ...types import Response
 
 
 def _get_kwargs(
     platform_key: str,
-    *,
-    client: AuthenticatedClient,
 ) -> Dict[str, Any]:
-    url = "{}/integrations/credentials/{platformKey}".format(client.base_url, platformKey=platform_key)
-
-    headers: Dict[str, str] = client.get_headers()
-    cookies: Dict[str, Any] = client.get_cookies()
+    pass
 
     return {
         "method": "delete",
-        "url": url,
-        "headers": headers,
-        "cookies": cookies,
-        "timeout": client.get_timeout(),
+        "url": "/integrations/credentials/{platformKey}".format(
+            platformKey=platform_key,
+        ),
     }
 
 
 def _parse_response(
-    *, client: Client, response: httpx.Response
-) -> Optional[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Optional[DeleteIntegrationsCredentialsPlatformKeyResponse200]:
     if response.status_code == HTTPStatus.OK:
-        response_200 = CodatPublicApiModelsPlatformCredentialsPlatformCredentials.from_dict(response.json())
+        response_200 = DeleteIntegrationsCredentialsPlatformKeyResponse200.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
-        raise errors.UnexpectedStatus(f"Unexpected status code: {response.status_code}")
+        raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
 def _build_response(
-    *, client: Client, response: httpx.Response
-) -> Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+) -> Response[DeleteIntegrationsCredentialsPlatformKeyResponse200]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,7 +52,7 @@ def sync_detailed(
     platform_key: str,
     *,
     client: AuthenticatedClient,
-) -> Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Response[DeleteIntegrationsCredentialsPlatformKeyResponse200]:
     """Delete credentials used to authenticate with an accounting platform
 
     Args:
@@ -69,16 +63,14 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        Response[DeleteIntegrationsCredentialsPlatformKeyResponse200]
     """
 
     kwargs = _get_kwargs(
         platform_key=platform_key,
-        client=client,
     )
 
-    response = httpx.request(
-        verify=client.verify_ssl,
+    response = client.get_httpx_client().request(
         **kwargs,
     )
 
@@ -89,7 +81,7 @@ def sync(
     platform_key: str,
     *,
     client: AuthenticatedClient,
-) -> Optional[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Optional[DeleteIntegrationsCredentialsPlatformKeyResponse200]:
     """Delete credentials used to authenticate with an accounting platform
 
     Args:
@@ -100,7 +92,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        DeleteIntegrationsCredentialsPlatformKeyResponse200
     """
 
     return sync_detailed(
@@ -113,7 +105,7 @@ async def asyncio_detailed(
     platform_key: str,
     *,
     client: AuthenticatedClient,
-) -> Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Response[DeleteIntegrationsCredentialsPlatformKeyResponse200]:
     """Delete credentials used to authenticate with an accounting platform
 
     Args:
@@ -124,16 +116,14 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        Response[DeleteIntegrationsCredentialsPlatformKeyResponse200]
     """
 
     kwargs = _get_kwargs(
         platform_key=platform_key,
-        client=client,
     )
 
-    async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
-        response = await _client.request(**kwargs)
+    response = await client.get_async_httpx_client().request(**kwargs)
 
     return _build_response(client=client, response=response)
 
@@ -142,7 +132,7 @@ async def asyncio(
     platform_key: str,
     *,
     client: AuthenticatedClient,
-) -> Optional[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]:
+) -> Optional[DeleteIntegrationsCredentialsPlatformKeyResponse200]:
     """Delete credentials used to authenticate with an accounting platform
 
     Args:
@@ -153,7 +143,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodatPublicApiModelsPlatformCredentialsPlatformCredentials]
+        DeleteIntegrationsCredentialsPlatformKeyResponse200
     """
 
     return (

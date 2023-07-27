@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class CodatDataContractsDatasetsCashFlowStatementReportingData(str, Enum):
-    UNKNOWN = "Unknown"
-    INDIRECT = "Indirect"
     DIRECT = "Direct"
+    INDIRECT = "Indirect"
+    UNKNOWN = "Unknown"
 
     def __str__(self) -> str:
         return str(self.value)

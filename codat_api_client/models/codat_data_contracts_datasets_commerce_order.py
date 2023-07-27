@@ -1,7 +1,7 @@
 import datetime
 from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
-import attr
+from attrs import define
 from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
@@ -20,12 +20,15 @@ if TYPE_CHECKING:
     from ..models.codat_data_contracts_datasets_commerce_service_charge import (
         CodatDataContractsDatasetsCommerceServiceCharge,
     )
+    from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+        CodatDataContractsDatasetsDataInterfacesSupplementalData,
+    )
 
 
 T = TypeVar("T", bound="CodatDataContractsDatasetsCommerceOrder")
 
 
-@attr.s(auto_attribs=True)
+@define
 class CodatDataContractsDatasetsCommerceOrder:
     """
     Attributes:
@@ -47,6 +50,7 @@ class CodatDataContractsDatasetsCommerceOrder:
         customer_ref (Union[Unset, CodatDataContractsDatasetsCommerceCustomerRef]):
         modified_date (Union[Unset, None, datetime.datetime]):
         source_modified_date (Union[Unset, None, datetime.datetime]):
+        supplemental_data (Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]):
     """
 
     id: Union[Unset, None, str] = UNSET
@@ -67,6 +71,7 @@ class CodatDataContractsDatasetsCommerceOrder:
     customer_ref: Union[Unset, "CodatDataContractsDatasetsCommerceCustomerRef"] = UNSET
     modified_date: Union[Unset, None, datetime.datetime] = UNSET
     source_modified_date: Union[Unset, None, datetime.datetime] = UNSET
+    supplemental_data: Union[Unset, "CodatDataContractsDatasetsDataInterfacesSupplementalData"] = UNSET
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
@@ -135,6 +140,10 @@ class CodatDataContractsDatasetsCommerceOrder:
         if not isinstance(self.source_modified_date, Unset):
             source_modified_date = self.source_modified_date.isoformat() if self.source_modified_date else None
 
+        supplemental_data: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.supplemental_data, Unset):
+            supplemental_data = self.supplemental_data.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update({})
         if id is not UNSET:
@@ -173,6 +182,8 @@ class CodatDataContractsDatasetsCommerceOrder:
             field_dict["modifiedDate"] = modified_date
         if source_modified_date is not UNSET:
             field_dict["sourceModifiedDate"] = source_modified_date
+        if supplemental_data is not UNSET:
+            field_dict["supplementalData"] = supplemental_data
 
         return field_dict
 
@@ -192,6 +203,9 @@ class CodatDataContractsDatasetsCommerceOrder:
         )
         from ..models.codat_data_contracts_datasets_commerce_service_charge import (
             CodatDataContractsDatasetsCommerceServiceCharge,
+        )
+        from ..models.codat_data_contracts_datasets_data_interfaces_supplemental_data import (
+            CodatDataContractsDatasetsDataInterfacesSupplementalData,
         )
 
         d = src_dict.copy()
@@ -284,6 +298,13 @@ class CodatDataContractsDatasetsCommerceOrder:
         else:
             source_modified_date = isoparse(_source_modified_date)
 
+        _supplemental_data = d.pop("supplementalData", UNSET)
+        supplemental_data: Union[Unset, CodatDataContractsDatasetsDataInterfacesSupplementalData]
+        if isinstance(_supplemental_data, Unset):
+            supplemental_data = UNSET
+        else:
+            supplemental_data = CodatDataContractsDatasetsDataInterfacesSupplementalData.from_dict(_supplemental_data)
+
         codat_data_contracts_datasets_commerce_order = cls(
             id=id,
             order_number=order_number,
@@ -303,6 +324,7 @@ class CodatDataContractsDatasetsCommerceOrder:
             customer_ref=customer_ref,
             modified_date=modified_date,
             source_modified_date=source_modified_date,
+            supplemental_data=supplemental_data,
         )
 
         return codat_data_contracts_datasets_commerce_order
